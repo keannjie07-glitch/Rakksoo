@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakk Soo Incorporated | Construction | Olongapo City</title>
+    <meta name="description" content="Rakk Soo Incorporated – 5.0 rated construction company in Olongapo City. Scaffolding, remodeling, design & build, and general contracting. View 20+ finished projects.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #08080c;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-light-section: #0a0a10;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0c0;
+            --text-muted: #888888;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --red: #c62828;
+            --red-light: #e53935;
+            --red-bg: rgba(198, 40, 40, 0.08);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.7);
+            --navbar-bg: rgba(0, 0, 0, 0.85);
+            --footer-bg: #020203;
+            --toggle-bg: #1a1a1a;
+            --toggle-circle: #ffffff;
+            --transition-speed: 0.4s;
+        }
+
+        body.light-mode {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-light-section: #f0f2f5;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a5a;
+            --text-muted: #777;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.1);
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #1a1a2e;
+            --red-bg: rgba(198, 40, 40, 0.06);
+            --toggle-bg: #e0e0e0;
+            --toggle-circle: #e53935;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.7; color: var(--text-primary); background-color: var(--bg-primary); transition: background-color var(--transition-speed), color var(--transition-speed); overflow-x: hidden; }
+
+        h1, h2, h3, h4, .hero-text h1, .section-header h2, .project-info h4,
+        .service-card h4, .review-card .review-author, .hero-badge, .btn, .nav-links a {
+            font-family: 'Bebas Neue', cursive; letter-spacing: 0.5px;
+        }
+        p, .nav-links a, .btn, .review-text, .info-row, .hero-text .subtitle, .project-info p, .service-card p, .hours-table, .footer, .section-header .label, .review-card .review-text, .contact-info p, .map-wrapper p {
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn, .nav-links a, .nav-cta { font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 0; }
+        .hero-text h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; letter-spacing: 2px; font-weight: 400; margin-bottom: 0.5rem; }
+        .hero-text h1 span { display: inline-block; color: transparent; background: linear-gradient(90deg, #c62828 0%, #ff8a80 20%, #e53935 40%, #ff5252 60%, #e53935 80%, #c62828 100%); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: redShine 3s linear infinite; }
+        @keyframes redShine { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+        .section-header h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2.5rem, 4.5vw, 3.5rem); letter-spacing: 1px; }
+        .project-info h4, .service-card h4 { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; letter-spacing: 0.8px; }
+
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #000; } ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 9999; pointer-events: none; }
+        .progress-bar { height: 4px; background: var(--red); width: 0%; border-radius: 0 2px 2px 0; box-shadow: 0 0 10px rgba(198, 40, 40, 0.8); transition: width 0.1s ease; }
+
+        .theme-switch-wrapper { display: flex; align-items: center; margin-left: 1rem; }
+        .theme-switch { position: relative; display: inline-block; width: 60px; height: 30px; }
+        .theme-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--toggle-bg); transition: 0.3s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 3px; bottom: 3px; background-color: var(--toggle-circle); transition: 0.3s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--red); } input:checked + .slider:before { transform: translateX(30px); background-color: #fff; }
+        .slider-icon { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.9rem; pointer-events: none; transition: 0.3s; }
+        .slider-icon.sun { left: 5px; opacity: 0; } .slider-icon.moon { right: 5px; opacity: 1; } input:checked ~ .slider-icon.sun { opacity: 1; } input:checked ~ .slider-icon.moon { opacity: 0; }
+
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; background: var(--red); color: #fff; border: none; border-radius: 50%; font-size: 1.4rem; cursor: pointer; box-shadow: 0 4px 20px rgba(198, 40, 40, 0.6); z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.4s ease; display: flex; align-items: center; justify-content: center; }
+        .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; } .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s ease, transform 0.8s ease; } .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.7s ease, transform 0.7s ease; } .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navbar-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-color); transition: background 0.4s, box-shadow 0.4s; padding: 0 1.5rem; }
+        .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 75px; }
+        .nav-logo { display: flex; align-items: center; text-decoration: none; gap: 0.5rem; }
+        .nav-logo img { height: 48px; width: 48px; border-radius: 50%; object-fit: cover; transition: opacity 0.3s; }
+        .nav-logo:hover img { opacity: 0.9; }
+        .nav-logo .logo-text { font-family: 'Bebas Neue', cursive; color: var(--text-primary); font-size: 1.5rem; letter-spacing: 1px; }
+        .nav-logo .logo-text span { color: var(--red); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--red); transition: width 0.3s; }
+        .nav-links a:hover { color: var(--text-primary); } .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--red); color: #fff !important; padding: 0.6rem 1.4rem !important; border-radius: 30px !important; font-weight: 700 !important; } .nav-cta:hover { background: var(--red-light); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+        .hamburger span { width: 28px; height: 3px; background: var(--text-primary); border-radius: 3px; transition: 0.3s; }
+
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #000000 0%, #0a0a0f 50%, #0d0d15 100%); overflow: hidden; padding-top: 75px; }
+        .light-mode .hero { background: linear-gradient(135deg, #eef2f5 0%, #ffffff 100%); }
+        .hero-content { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; width: 100%; z-index: 2; }
+        .hero-text .subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2rem; font-weight: 400; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 30px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: 0.3s; cursor: pointer; letter-spacing: 0.3px; }
+        .btn-primary { background: var(--red); color: #fff; }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 2px solid var(--border-color); }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
+        .project-card { border-radius: 16px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-color); transition: transform 0.3s, box-shadow 0.3s; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .project-img { height: 200px; background-size: cover; background-position: center; transition: transform 0.5s; } .project-card:hover .project-img { transform: scale(1.05); }
+        .project-info { padding: 1.2rem; } .project-info h4 { color: var(--text-primary); font-weight: 400; margin-bottom: 0.2rem; } .project-info p { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+        .service-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2rem; text-align: center; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-5px); background: var(--red-bg); }
+        .service-card h4 { font-size: 1.5rem; margin: 0.5rem 0; color: var(--text-primary); } .service-card p { color: var(--text-muted); font-weight: 400; }
+
+        .review-card { background: var(--bg-card); border-radius: 16px; padding: 2rem; border: 1px solid var(--border-color); text-align: center; }
+        .review-text { font-style: italic; color: var(--text-secondary); font-weight: 400; }
+
+        .contact-buttons { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
+        .btn-gmail { background: #d44638; color: white; border: none; }
+        .btn-gmail:hover { background: #c1352e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 70, 56, 0.4); }
+        .btn-inquiry { background: var(--red); color: #fff; }
+        .btn-inquiry:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4); }
+
+        @media (max-width: 900px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navbar-bg); flex-direction: column; padding: 6rem 2rem; transition: right 0.35s; }
+            .nav-links.active { right: 0; } .hamburger { display: flex; }
+            .theme-switch-wrapper { margin-left: 0; margin-top: 1rem; } 
+            .nav-logo img { height: 40px; width: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="rakksoo.png" alt="Rakk Soo Logo">
+                <span class="logo-text">RAKK <span>SOO</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:09199972576" class="nav-cta">📞 Call Now</a></li>
+                <li class="theme-switch-wrapper">
+                    <label class="theme-switch" for="themeToggleCheckbox">
+                        <input type="checkbox" id="themeToggleCheckbox">
+                        <span class="slider"></span>
+                        <span class="slider-icon sun">☀️</span>
+                        <span class="slider-icon moon">🌙</span>
+                    </label>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge reveal" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(198,40,40,0.15);border:1px solid rgba(198,40,40,0.3);padding:0.5rem 1.1rem;border-radius:30px;margin-bottom:1.5rem;font-weight:600;font-size:0.9rem;color:var(--red);">
+                    ⭐ 5.0 Rated · Olongapo City
+                </div>
+                <h1 class="reveal">Quality <span>Design & Build</span></h1>
+                <p class="subtitle reveal">Scaffolding, remodeling, kitchens, bathrooms & complete home improvements at a great price. View 20+ real projects below.</p>
+                <div class="hero-buttons reveal">
+                    <a href="tel:09199972576" class="btn btn-primary">📞 0919 997 2576</a>
+                    <a href="#projects" class="btn btn-outline">See Our Work</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal-scale">
+                <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:20px;padding:2rem;text-align:center;">
+                    <img src="rakksoo.png" alt="Rakk Soo Logo" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:1rem;">
+                    <div style="font-size:4rem;font-weight:900;color:var(--red);font-family:'Bebas Neue',cursive;">5.0</div>
+                    <div style="color:#ffc107;font-size:1.5rem;">★★★★★</div>
+                    <p style="color:var(--text-secondary);">Rakk Soo Incorporated</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about" style="padding:5rem 2rem; background:var(--bg-secondary);">
+        <div class="section-container" style="max-width:1100px;margin:0 auto;">
+            <div class="section-header reveal" style="text-align:center;margin-bottom:3rem;">
+                <span style="color:var(--red);text-transform:uppercase;letter-spacing:3px;font-weight:600;">About Us</span>
+                <h2>Your Trusted Construction Partner</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
+                <div class="reveal-left" style="background:#0a0a10;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:2rem;color:white;">
+                    <img src="rakksoo.png" alt="Rakk Soo Logo" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">
+                </div>
+                <div class="reveal-right">
+                    <h3 style="font-family:'Bebas Neue',cursive;font-size:2rem;">Serving Olongapo & Zambales</h3>
+                    <p style="color:var(--text-secondary);">Rakk Soo Incorporated is a trusted construction company specializing in scaffolding, remodeling, kitchen & bathroom renovations. Whatever your project needs, we deliver quality at a fair price.</p>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;">
+                        <div>⭐ <strong>5.0 Rating</strong></div>
+                        <div>💰 <strong>Great Prices</strong></div>
+                        <div>🏠 <strong>Full Service</strong></div>
+                        <div>📍 <strong>Local Experts</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services" style="padding:5rem 2rem; background:var(--bg-primary);">
+        <div class="section-container" style="max-width:1100px;margin:0 auto;">
+            <div class="section-header reveal" style="text-align:center;margin-bottom:3rem;">
+                <span style="color:var(--red);font-weight:600;">Our Services</span>
+                <h2>What We Offer</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal-scale"><div style="font-size:2rem;">📐</div><h4>Design & Build</h4><p>Complete solutions</p></div>
+                <div class="service-card reveal-scale"><div style="font-size:2rem;">🔨</div><h4>Remodeling</h4><p>Transform your space</p></div>
+                <div class="service-card reveal-scale"><div style="font-size:2rem;">🍳</div><h4>Kitchens</h4><p>Modern upgrades</p></div>
+                <div class="service-card reveal-scale"><div style="font-size:2rem;">🛁</div><h4>Bathrooms</h4><p>Stylish renovations</p></div>
+                <div class="service-card reveal-scale"><div style="font-size:2rem;">🏡</div><h4>Scaffolding</h4><p>Rent & sales available</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects" style="padding:5rem 2rem; background:var(--bg-secondary);">
+        <div class="section-container" style="max-width:1200px;margin:0 auto;">
+            <div class="section-header reveal" style="text-align:center;margin-bottom:3rem;">
+                <span style="color:var(--red);font-weight:600;">Our Portfolio</span>
+                <h2>20 Finished Projects</h2>
+                <div style="width:60px;height:4px;background:var(--red);margin:1rem auto;"></div>
+                <p style="color:var(--text-secondary);max-width:600px;margin:1rem auto 0;">Explore a selection of our completed works across Olongapo City and Zambales. Quality craftsmanship, on time and on budget.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/kitchen,modern,remodel');" loading="lazy"></div><div class="project-info"><h4>Modern Kitchen Remodel</h4><p>Olongapo City · Island & granite tops</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/bathroom,luxury,renovation');" loading="lazy"></div><div class="project-info"><h4>Luxury Bathroom Upgrade</h4><p>Subic Bay · Walk-in shower & tiles</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/home,renovation,interior');" loading="lazy"></div><div class="project-info"><h4>Complete Home Makeover</h4><p>Zambales · Interior & exterior repaint</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/office,interior,commercial');" loading="lazy"></div><div class="project-info"><h4>Commercial Office Fit-Out</h4><p>Olongapo · Partition & ceiling</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/deck,patio,outdoor');" loading="lazy"></div><div class="project-info"><h4>Outdoor Deck & Patio</h4><p>Private Residence · Wood & steel</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/apartment,renovation,interior');" loading="lazy"></div><div class="project-info"><h4>Apartment Renovation</h4><p>Multiple Units · Budget-friendly</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/living,room,renovation');" loading="lazy"></div><div class="project-info"><h4>Living Room Expansion</h4><p>Olongapo · Open plan design</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/cabinetry,woodwork,kitchen');" loading="lazy"></div><div class="project-info"><h4>Custom Cabinetry</h4><p>Zambales · Kitchen & bedroom built-ins</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/roof,repair,exterior');" loading="lazy"></div><div class="project-info"><h4>Roof Repair & Painting</h4><p>Olongapo · Leak fix & fresh coat</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/floor,tiling,tiles');" loading="lazy"></div><div class="project-info"><h4>Floor Tiling Works</h4><p>Subic · Porcelain & ceramic</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/bedroom,makeover,interior');" loading="lazy"></div><div class="project-info"><h4>Bedroom Makeover</h4><p>Olongapo · Wardrobe & feature wall</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/restaurant,interior,design');" loading="lazy"></div><div class="project-info"><h4>Restaurant Interior</h4><p>Zambales · Ambiance & seating</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/garden,landscaping,outdoor');" loading="lazy"></div><div class="project-info"><h4>Garden Landscaping</h4><p>Olongapo · Retaining wall & plants</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/garage,conversion,office');" loading="lazy"></div><div class="project-info"><h4>Garage Conversion</h4><p>Private · Into a home office</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/staircase,renovation,wood');" loading="lazy"></div><div class="project-info"><h4>Staircase Renovation</h4><p>Olongapo · Wood & glass railing</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/house,exterior,painting');" loading="lazy"></div><div class="project-info"><h4>Exterior Painting</h4><p>Zambales · Weatherproof coating</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/ceiling,molding,gypsum');" loading="lazy"></div><div class="project-info"><h4>Ceiling & Molding Works</h4><p>Olongapo · Gypsum board & crown</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/laundry,room,renovation');" loading="lazy"></div><div class="project-info"><h4>Laundry Area Build</h4><p>Subic · Functional & tiled</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/storefront,renovation,commercial');" loading="lazy"></div><div class="project-info"><h4>Storefront Renovation</h4><p>Olongapo · Glass & signage</p></div></div>
+                <div class="project-card reveal-scale"><div class="project-img" style="background-image:url('https://loremflickr.com/600/400/electrical,wiring,home');" loading="lazy"></div><div class="project-info"><h4>Full House Rewiring</h4><p>Zambales · Electrical upgrade</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="reviews" style="padding:5rem 2rem; background:var(--bg-primary);">
+        <div class="section-container" style="max-width:600px;margin:0 auto;text-align:center;">
+            <div class="review-card reveal">
+                <div style="font-size:3rem;">⭐</div>
+                <p class="review-text">"For RENT and SALE SCAFFOLDING PER SET ‼️ We are located: 2-A National Highway Upper Kalaklan, Olongapo City. Great service and quality work!"</p>
+                <p style="font-weight:bold;font-family:'Bebas Neue',cursive;font-size:1.4rem;">— Rakk Soo</p>
+                <p style="color:var(--red);">Google Review · 5.0 ★</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="padding:5rem 2rem; background:var(--bg-secondary);">
+        <div class="section-container" style="max-width:1100px;margin:0 auto;">
+            <div class="section-header reveal" style="text-align:center;">
+                <span style="color:var(--red);font-weight:600;">Contact</span>
+                <h2>Get In Touch</h2>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;">
+                <div class="reveal-left" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:2rem;">
+                    <p>📍 2-A National Highway, Upper Kalaklan, Olongapo City, 2200 Zambales</p>
+                    <p>📞 <a href="tel:09199972576" style="color:var(--red);">0919 997 2576</a></p>
+                    <p>📞 Viber/Mobile: 09189330660</p>
+                    <p>🕐 Monday – Friday 8AM – 5PM</p>
+                    <p style="font-size:0.85rem;color:var(--text-muted);">⚠️ Closed on weekends and holidays</p>
+                    <div class="contact-buttons">
+                        <a href="https://forms.gle/LngB1nLL1tq4ZMZy6" target="_blank" class="btn btn-inquiry" style="display:flex; align-items:center; justify-content:center; gap:0.5rem;">📝 Inquiry Form</a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=keannjie07@gmail.com" target="_blank" class="btn btn-gmail" style="display:flex; align-items:center; justify-content:center; gap:0.5rem;">✉️ Gmail</a>
+                    </div>
+                </div>
+                <div class="reveal-right map-wrapper" style="background:var(--bg-light-section);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                    <span style="font-size:3rem;">📍</span>
+                    <p style="color:var(--text-secondary);">Find us on Google Maps</p>
+                    <a href="https://www.google.com/maps/place/Rakk+Soo+Incorporated/@14.834359,120.2761027,162m/data=!3m1!1e3!4m10!1m2!2m1!1sRakk+Soo+Incorporated,+2-A+National+Highway,+Upper+Kalaklan,+Olongapo+City,+2200+Zambales!3m6!1s0x3396711c1ee66be1:0xa874d3496aaab1cc!8m2!3d14.8343158!4d120.2762803!15sCllSYWtrIFNvbyBJbmNvcnBvcmF0ZWQsIDItQSBOYXRpb25hbCBIaWdod2F5LCBVcHBlciBLYWxha2xhbiwgT2xvbmdhcG8gQ2l0eSwgMjIwMCBaYW1iYWxlc5IBFGNvbnN0cnVjdGlvbl9jb21wYW554AEA!16s%2Fg%2F1264lpc21?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-primary" style="margin-top:1rem;">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background:var(--footer-bg);color:#ccc;padding:3rem 2rem;text-align:center;">
+        <p>Rakk Soo Incorporated © <span id="year"></span> | 2-A National Highway, Upper Kalaklan, Olongapo City, 2200 Zambales</p>
+        <p>Follow us on <a href="https://www.facebook.com/rakk.soo.9" style="color:var(--red);">Facebook</a> (610+ followers)</p>
+        <p>Contact: 0919 997 2576 | Viber: 09189330660</p>
+    </footer>
+
+    <script>
+        // Progress bar & back to top
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (winScroll / height) * 100 + '%';
+            document.getElementById('backToTop').classList.toggle('show', winScroll > 600);
+            document.getElementById('navbar').classList.toggle('scrolled', winScroll > 50);
+        });
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        function closeMenu() { hamburger.classList.remove('active'); navLinks.classList.remove('active'); }
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
+
+        // Theme toggle
+        const themeToggleCheckbox = document.getElementById('themeToggleCheckbox');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggleCheckbox.checked = true;
+        }
+        themeToggleCheckbox.addEventListener('change', () => {
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+            });
+        });
+    </script>
+</body>
+</html>
